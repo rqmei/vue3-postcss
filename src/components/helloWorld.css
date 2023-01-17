@@ -1,14 +1,86 @@
-.hello {
-  background-color: antiquewhite;
-  ul {
-  list-style-type: none;
-  padding: 0;
+ /* 自定义定义媒体查询语法: @custom-media xx (条件) and (条件)*/
+ /* @custom-media --small-viewport (width < 480px); */
+
+ /* 自定义定义媒体查询语法: @custom-media xx (条件) and (条件)  用 <= 和 >=来取代min和max*/
+ /* @custom-media --normal-viewport (width >= 480px); */
+
+ /* @custom-selector :--heading h1,h2,h3,h4,h5,h6; */
+:root{
+  /*  1、自定义局部属性 */
+  --mainColor: rgb(238, 226, 226);
+  --fontSize: 10px;
+}
+.hello-world-wrap {
+  background-color: var(--mainColor);
+ 
+  /* 2、用 calc() 使用自定义变量 */
+ .calc-wrap{
+    background-color: aqua;
+    color: white;
+    font-size: var(--fontSize);
+    p{
+      font-size: calc(var(--fontSize)*2);
+      color: brown;
+      /* // 全局变量 */
+      background-color: var(--tb-color-theme);
+      
+    }
+ }
+ 
+ /* 3、媒体查询相关*/
+ .media-wrap{
+  
+    background-color: aqua;
+  /* 3.1媒体查询 */
+    @media(width > 1280px) and (width < 4200px) {
+      background-color: chocolate;
+      color: white;
+    }
   }
-  h3 {
-    margin: 40px 0 0;
-    color: #d14545;
+  /* 3.2使用自定义媒体查询 */
+  @media(--small-viewport){
+    .custom-media-wrap{
+        background-color: rgb(243, 247, 19);
+        color: rgb(187, 13, 13);
+    }
   }
-  a:hover{
-  color: cyan;
+  @media(--pc-viewport){
+    .custom-media-wrap{
+      background-color: rgb(119, 0, 255);
+      color: aquamarine;
+    }
+  }
+  
+  /* 4、自定义选择器相关 */
+  .selector-wrap{
+    margin-top: 20px;
+    background-color: burlywood;
+    :--heading {
+      color: blue;
+      font-size: 18px;
+      margin: 0px;
+    }
+    }
+ 
+
+  /* 4、image-set按不同分辨率加载对应的图片 */
+  .image-set-wrap{
+    margin-top: 10px;
+    color: white;
+    height: 150px;
+    background-position: center center;
+   	background-size: cover;
+    background-color: cadetblue;
+    background-image: image-set(url("../assets/imgs/1x.jpg") 1x,url("../assets/imgs/2x.jpg") 2x,url("../assets/imgs/3x.jpeg") 3x);
+    
+  }
+  
+
+  /* 5、函数相关 */
+  .function-wrap{
+    .color-wrap{
+      color: color(red alpha(-10%));
+    }
   }
 }
+

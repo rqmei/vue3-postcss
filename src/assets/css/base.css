@@ -1,0 +1,9 @@
+ /* 自定义定义媒体查询语法: @custom-media xx (条件) and (条件)*/
+ @custom-media --small-viewport (width < 1280px);
+ @custom-media --pc-viewport (width >= 1280px);
+
+
+ /* 自定义选择器相关 语法 @custom-selector :--选择器的名称 选择的元素(h1,h2,h3,h4,h5) */
+ /* 一定要注意:要加上 */
+ @custom-selector :--heading h1,h2,h3,h4,h5,h6;
+
